@@ -1,15 +1,33 @@
+/* :root es donde guardamos variables globales que usaremos en toda la pagina */
 :root{
 
 /* colores para cada estacion */
 --primavera-btn:#3b9c5f;
 --verano-btn:#ff7b00;
 
-/* agregamos colores de las nuevas estaciones */
---otono-btn:#b86b2b;
---invierno-btn:#4da6ff;
+/* agregamos colores nuevos */
+--otono-btn:#a0522d;
+--invierno-btn:#3498db;
 
-/* velocidad de la animacion para que cambie */
+/* velocidad de la animacion para cambios */
 --transicion: all 1s cubic-bezier(0.3,0,0.3,1);
+
+}
+
+/* estilos generales del body */
+body{
+
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Segoe UI', sans-serif;
+overflow:hidden;
+background-position:center;
+background-size:cover;
+background-repeat:no-repeat;
+transition: background-color var(--transicion), background-image 1.4s ease;
 
 }
 
@@ -22,15 +40,87 @@ body.verano{
 background-image:url("imagen_verano.jpg");
 }
 
+/* agregamos fondo de otoño */
 body.otono{
-background-image:url("imagen_otono.jpg");
+background-image:url("imagen_otoño.jpg");
 }
 
+/* agregamos fondo de invierno */
 body.invierno{
 background-image:url("imagen_invierno.jpg");
 }
 
-/* colores del boton */
+/* capa oscura para mejorar el contraste del contenido */
+body::before{
+
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+z-index:-1;
+
+}
+
+.contenedor-central{
+
+text-align:center;
+background:rgba(255,255,255,0.5);
+padding:40px;
+border-radius:35px;
+backdrop-filter:blur(12px);
+box-shadow:0 12px 30px rgba(0,0,0,0.5);
+width:320px;
+transition:var(--transicion);
+
+}
+
+/* espacio para el icono */
+.ilustracion{
+
+height:120px;
+margin-bottom:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+/* estilo del icono */
+.icono{
+
+width:140px;
+transition: transform .6s cubic-bezier(0.68,-0.4,0.26,1.4), opacity .4s;
+
+}
+
+/* animacion cuando cambia la estacion */
+.cambio-icono{
+
+transform:scale(0) rotate(-180deg);
+opacity:0;
+
+}
+
+/* boton que cambia la estacion */
+#boton-estacion{
+
+margin-top:25px;
+padding:12px 30px;
+border:none;
+border-radius:25px;
+color:white;
+font-weight:bold;
+text-transform:uppercase;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,0.2);
+transition:var(--transicion);
+
+}
+
+/* colores del boton dependiendo la estacion */
 body.primavera #boton-estacion{
 background-color:var(--primavera-btn);
 }
@@ -39,10 +129,70 @@ body.verano #boton-estacion{
 background-color:var(--verano-btn);
 }
 
+/* agregamos colores para otoño */
 body.otono #boton-estacion{
 background-color:var(--otono-btn);
 }
 
+/* agregamos colores para invierno */
 body.invierno #boton-estacion{
 background-color:var(--invierno-btn);
 }
+
+/* efecto cuando el mouse pasa por el boton */
+#boton-estacion:hover{
+
+transform:translateY(-3px) scale(1.06);
+filter:brightness(1.1);
+
+}
+
+/* capa donde caen los emojis */
+.capa-particulas{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:-1;
+overflow:hidden;
+
+}
+
+/* animacion de caida de los emojis */
+@keyframes caer{
+
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+
+10%{opacity:1;}
+
+90%{opacity:1;}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* estilo general de cada emoji */
+.capa-particulas span{
+
+position:absolute;
+top:-50px;
+font-size:26px;
+animation:caer 4s linear infinite;
+
+}
+
+/* posiciones para que no caigan todos juntos */
+.capa-particulas span:nth-child(1){ left:15%; animation-delay:1s; }
+.capa-particulas span:nth-child(2){ left:35%; animation-delay:2s; }
+.capa-particulas span:nth-child(3){ left:55%; animation-delay:3s; }
+.capa-particulas span:nth-child(4){ left:75%; animation-delay:4s; }
+.capa-particulas span:nth-child(5){ left:90%; animation-delay:5s; }
