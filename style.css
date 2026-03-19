@@ -40,17 +40,14 @@ body.verano{
 background-image:url("imagen_verano.jpg");
 }
 
-/* agregamos fondo de otoño */
 body.otono{
 background-image:url("imagen_otoño.jpg");
 }
 
-/* agregamos fondo de invierno */
 body.invierno{
 background-image:url("imagen_invierno.jpg");
 }
 
-/* capa oscura para mejorar el contraste del contenido */
 body::before{
 
 content:"";
@@ -120,7 +117,7 @@ transition:var(--transicion);
 
 }
 
-/* colores del boton dependiendo la estacion */
+/* colores del boton depende la estacion */
 body.primavera #boton-estacion{
 background-color:var(--primavera-btn);
 }
@@ -129,17 +126,14 @@ body.verano #boton-estacion{
 background-color:var(--verano-btn);
 }
 
-/* agregamos colores para otoño */
 body.otono #boton-estacion{
 background-color:var(--otono-btn);
 }
 
-/* agregamos colores para invierno */
 body.invierno #boton-estacion{
 background-color:var(--invierno-btn);
 }
 
-/* efecto cuando el mouse pasa por el boton */
 #boton-estacion:hover{
 
 transform:translateY(-3px) scale(1.06);
@@ -161,7 +155,6 @@ overflow:hidden;
 
 }
 
-/* animacion de caida de los emojis */
 @keyframes caer{
 
 0%{
@@ -180,7 +173,6 @@ opacity:0;
 
 }
 
-/* estilo general de cada emoji */
 .capa-particulas span{
 
 position:absolute;

@@ -18,7 +18,7 @@ titulo: 'Verano'
 {
 nombre: 'otono',
 icono: 'otono.png',
-msj: 'Las hojas comienzan a caer',
+msj: 'El mundo se ve de color naranja y marron',
 titulo: 'Otoño'
 },
 
@@ -26,16 +26,16 @@ titulo: 'Otoño'
 {
 nombre: 'invierno',
 icono: 'invierno.png',
-msj: 'El frío ha llegado',
+msj: 'Es tiempo de sacar la poderosa cobija del tigre',
 titulo: 'Invierno'
 }
 
 ];
 
-// variable que controla que estacion estamos mostrando
+//controla que estacion estamos mostrando
 let posicion = 0;
 
-// elementos del html para poder modificarlos
+// elementos del htm para poder modificarlos
 const boton = document.getElementById('boton-estacion');
 const cuerpo = document.body;
 const icono = document.getElementById('icono-estacion');
@@ -47,7 +47,7 @@ const capa = document.getElementById('fondo-animado');
 capa.innerHTML =
 '<span>🌺</span><span>🌼</span><span>🌺</span><span>🌼</span><span>🌺</span><span>🌼</span>';
 
-// evento que detecta cuando presionamos el boton
+// detecta cuando presionamos el boton
 boton.addEventListener('click', () => {
 
 cuerpo.classList.remove(estaciones[posicion].nombre);
@@ -55,24 +55,20 @@ icono.classList.add('cambio-icono');
 
 setTimeout(() => {
 
-// avanza a la siguiente estacion
+// en esta parte hace que cambie todo y que se vea el cambio de estacion en estacion
 posicion = (posicion + 1) % estaciones.length;
 
 const actual = estaciones[posicion];
 
-// cambia el fondo
 cuerpo.classList.add(actual.nombre);
 
-// cambiamos la imagen del icono
 icono.src = actual.icono;
 
-// cambiamos el titulo
 titulo.innerText = actual.titulo;
 
-// cambiamos mensaje
 mensaje.innerText = actual.msj;
 
-// cambiamos los emojis que caen dependiendo la estacion
+
 if (actual.nombre === 'primavera') {
 
 capa.innerHTML =
@@ -87,7 +83,6 @@ capa.innerHTML =
 
 }
 
-// agregamos emojis de otoño
 else if (actual.nombre === 'otono') {
 
 capa.innerHTML =
@@ -95,7 +90,6 @@ capa.innerHTML =
 
 }
 
-// agregamos emojis de invierno
 else if (actual.nombre === 'invierno') {
 
 capa.innerHTML =
